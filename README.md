@@ -2,6 +2,8 @@
 
 This is a practical, lightweight, single-branch model that makes it easy to handle simple, and less simple, situations.
 
+It is similar to Trunk-Based development workflow with a , with some differences listed in [this chapter](#differences-with-trunk-based-development-tbd).
+
 **TLDR**
 ```
     Single main branch
@@ -160,3 +162,13 @@ gitGraph
     Don't make the mistake of merging `main` back to `feature2`, like `git checkout feature && git merge main` :x:
 
     This will still lead to a bubble merge.
+
+## Differences with Trunk-Based Development (TBD)
+* Branches are larger than under TBD, they can last as long as a feature is not developed ; complex features involving multiple developers are also not handled this way in TBD.
+* Fast-forwards are heavily used in TBD, which is not the case here.
+* Multiple release branches is not TBD.
+
+## Credits
+* This page was born from the desire to free ourselves from more complex models like gitflow, see [What is Git Flow](https://www.gitkraken.com/learn/git/git-flow) or popular Vincent Drissen's [A successful Git branching model](https://nvie.com/posts/a-successful-git-branching-model/), which I have nevertheless used for years (thank you Vincent), or [GitLab Flow](https://about.gitlab.com/topics/version-control/what-is-gitlab-flow/).
+* It also gives more than 
+* Thanks to jbenet for [this page about a simple git branching model](https://gist.github.com/jbenet/ee6c9ac48068889b0912)
