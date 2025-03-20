@@ -2,6 +2,8 @@
 
 This is a practical, lightweight, single-branch model that makes it easy to handle simple, and less simple, situations.
 
+It is adapted to developing software with several developers, deliver releases as soon as possible, be very versatile.
+
 It is similar to Trunk-Based development workflow with some differences listed in [this chapter](#differences-with-trunk-based-development-tbd).
 
 **TLDR**
@@ -34,9 +36,10 @@ gitGraph
 * Only you (the developer) should use it.
 
 ### Publishing the feature
+* Implement your feature in `feature`.
 * Rebase your branch onto `main`, like `git checkout feature && git rebase main`
 * You are responsible for the conflict management.
-* Publish a Pull Request from `feature` to `main`.
+* Publish a Pull Request, or equivalent, from `feature` to `main`.
 
 ## Merging features
 * You (the software manager) should merge the feature branch to `main`, manually or using a [GitHub](https://github.com/) Pull Request or a [GitLab](https://gitlab.com/) Merge Request.
@@ -68,7 +71,9 @@ In this model hotfixes are treated as features.
 ## Complex feature treated by more than one developer
 * Still one branch per developer.
 * Devs can checkout from other dev branches.
-* Merges must always be done back onto their base branch. In the following case, `feature_dev2` couldn't directly be merged back to `main`.
+* Merges must be done back onto their base branch. In the following case, `feature_dev2` couldn't directly be merged back to `main`.
+* Bubble merges should also be avoided, devs should rebase their work onto the base branch.
+
 
 ```mermaid
 ---
