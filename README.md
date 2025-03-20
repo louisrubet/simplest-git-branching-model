@@ -162,11 +162,10 @@ gitGraph
         merge feature2 id:"Merge feature2"
     ```
 
-    To avoid this please consider rebasing `feature2` onto main, like `git checkout feature2 && git rebase main` :white_check_mark:
+    This can be difficult to read when more than 2 branches overlap.
 
-    Don't make the mistake of merging `main` back to `feature2`, like `git checkout feature && git merge main` :x:
-
-    This will still lead to a bubble merge.
+    * Consider rebasing `feature2` onto main, like `git checkout feature2 && git rebase main` :white_check_mark:
+    * Don't merge `main` back to `feature2`, like `git checkout feature && git merge main` :x:, which will still lead to a bubble merge.
 
 ## Differences with Trunk-Based Development (TBD)
 * Branches are larger than under TBD, they can last as long as a feature is not developed ; complex features involving multiple developers are also not handled this way in TBD.
