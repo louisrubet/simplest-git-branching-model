@@ -174,6 +174,6 @@ gitGraph
 
 ## Credits
 * This page was born from the desire to free ourselves from more complex models like Git Flow, see [What is Git Flow](https://www.gitkraken.com/learn/git/git-flow) or popular Vincent Drissen's [A successful Git branching model](https://nvie.com/posts/a-successful-git-branching-model/), which I have nevertheless used for years (thank you Vincent), or [GitLab Flow](https://about.gitlab.com/topics/version-control/what-is-gitlab-flow/).
-* It also gives more than [GitHub Flow](https://docs.github.com/en/get-started/using-github/github-flow)
-* Thanks to [jbenet](https://github.com/jbenet) for [this gist about a simple git branching model](https://gist.github.com/jbenet/ee6c9ac48068889b0912)
+* Imo it also gives more control than [GitHub Flow](https://docs.github.com/en/get-started/using-github/github-flow).
+* Thanks to [jbenet](https://github.com/jbenet) for [this gist about a simple git branching model](https://gist.github.com/jbenet/ee6c9ac48068889b0912).
 * Diagrams are done with [mermaid](https://mermaid.js.org/), a great tool.
