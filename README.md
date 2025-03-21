@@ -104,9 +104,6 @@ A common case is maintaining multiple major releases.
 * Publish one PR per release.
 
 ```mermaid
----
-title: Maintain several releases
----
 gitGraph
     commit id: "ONE" tag: "v1.0"
     checkout main
@@ -138,9 +135,6 @@ gitGraph
 
 * :x: Avoid bubble merges
     ```mermaid
-    ---
-    title: Bubble merge
-    ---
     gitGraph
         commit id: "ONE"
         branch feature1
