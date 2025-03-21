@@ -1,10 +1,8 @@
 # Simplest git branching model
 
-This is a practical, lightweight, single-branch model that makes it easy to handle simple, and less simple, situations.
+This is a practical, lightweight, single-branch model that makes it easy to handle simple and less simple situations.
 
-It is adapted to developing software with several developers, deliver releases as soon as possible, be very versatile.
-
-It is similar to Trunk-Based development workflow with some differences listed in [this chapter](#differences-with-trunk-based-development-tbd).
+It is adapted to teams of several developers, delivering releases ASAP, maintaining several releases in parallel.
 
 **TLDR**
 ```
@@ -15,7 +13,7 @@ It is similar to Trunk-Based development workflow with some differences listed i
     Delete feature branches after merge
 ```
 
-Some more details now!
+Some more details below.
 
 ## Single branch model
 * A branch `main` stores the latest version and tags.
@@ -32,21 +30,21 @@ gitGraph
 ## Adding features
 
 ### Adding a feature branch
-* Add a `feature` branch checked out from `main`.
+* Add a `feature` branch checked out from `main`, like `git checkout main && git checkout -b feature`
 * Only you (the developer) should use it.
 
 ### Publishing the feature
 * Implement your feature in `feature`.
 * Rebase your branch onto `main`, like `git checkout feature && git rebase main`
 * You are responsible for the conflict management.
-* Publish a Pull Request, or equivalent, from `feature` to `main`.
+* Publish a Pull Request, or equivalent, from `feature` to `main` manually or using a [GitHub](https://github.com/) Pull Request or a [GitLab](https://gitlab.com/) Merge Request.
 
 ## Merging features
-* You (the software manager) should merge the feature branch to `main`, manually or using a [GitHub](https://github.com/) Pull Request or a [GitLab](https://gitlab.com/) Merge Request.
-* :x: This merge should probably not be done with option `--fast-forward`, which will inevitably lead to unreadable history.
+* You (the software manager) should merge the feature branch to `main`.
+* :x: This merge should not be done with option `--fast-forward`, which would kill the functional main branch spirit of this model.
 * Delete the feature branch. Modifying sources within the same ticket should be done in a **new branch**.
 * Put a new tag on `main` if needed.
-
+* :white_check_mark: Branches should look like:
 ```mermaid
 ---
 title: Merge
@@ -104,7 +102,7 @@ gitGraph
 
 ## Maintaining several `main` branches
 A common case is maintaining multiple major releases.
-* Create a main branch per release.
+* Create a main branch per release. You could check out from a tag, like `git checkout v1.0 && git checkout -b release-v1`
 * Keep separated feature branches for each release, even if the feature and change are the same. `git cherry-pick` can be your friend here.
 * Publish one PR per release.
 
@@ -167,13 +165,11 @@ gitGraph
     * Consider rebasing `feature2` onto main, like `git checkout feature2 && git rebase main` :white_check_mark:
     * Don't merge `main` back to `feature2`, like `git checkout feature && git merge main` :x:, which will still lead to a bubble merge.
 
-## Differences with Trunk-Based Development (TBD)
-* Branches are larger than under TBD, they can last as long as a feature is not developed ; complex features involving multiple developers are also not handled this way in TBD.
-* Fast-forwards are heavily used in TBD, which is not the case here.
-* Multiple release branches is not TBD.
-
 ## Credits
-* This page was born from the desire to free ourselves from more complex models like Git Flow, see [What is Git Flow](https://www.gitkraken.com/learn/git/git-flow) or popular Vincent Drissen's [A successful Git branching model](https://nvie.com/posts/a-successful-git-branching-model/), which I have nevertheless used for years (thank you Vincent), or [GitLab Flow](https://about.gitlab.com/topics/version-control/what-is-gitlab-flow/).
-* Imo it also gives more control than [GitHub Flow](https://docs.github.com/en/get-started/using-github/github-flow).
+* [What is Git Flow](https://www.gitkraken.com/learn/git/git-flow)
+* Popular Vincent Drissen's [A successful Git branching model](https://nvie.com/posts/a-successful-git-branching-model/), which I used for years (thank you Vincent)
+* [GitLab Flow](https://about.gitlab.com/topics/version-control/what-is-gitlab-flow/)
+* [Trunk-Based development workflow](https://trunkbaseddevelopment.com)
+* [GitHub Flow](https://docs.github.com/en/get-started/using-github/github-flow)
 * Thanks to [jbenet](https://github.com/jbenet) for [this gist about a simple git branching model](https://gist.github.com/jbenet/ee6c9ac48068889b0912).
-* Diagrams are done with [mermaid](https://mermaid.js.org/), a great tool.
+* Diagrams are done with [mermaid](https://mermaid.js.org/)
