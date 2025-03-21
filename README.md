@@ -71,9 +71,8 @@ In this model, issues and hotfixes are treated the same way than features.
 ## Complex feature treated by more than one developer
 * Still one branch per developer.
 * Devs can checkout from other dev branches.
-* Merges must be done back onto their base branch. In the following case, `feature_dev2` couldn't directly be merged back to `main`.
-* Bubble merges should also be avoided, devs should rebase their work onto the base branch.
-
+* Merges must be done back **onto their base branch**. In the following case, `feature_dev2` couldn't directly be merged back to `main`.
+* Bubble merges should also be avoided, devs should rebase their work onto the base branch. That is what did `dev3` in the following diagram.
 
 ```mermaid
 gitGraph
