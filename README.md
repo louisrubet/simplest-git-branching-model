@@ -52,13 +52,13 @@ gitGraph
 gitGraph
    commit id: " " tag: "v1.0.0"
    branch feature1
-   commit id: "A"
-   commit id: "B"
+   commit id: "  "
+   commit id: "   "
    checkout main
    merge feature1 id:"Merge feature1"
    branch feature2
-   commit id: "1"
-   commit id: "2"
+   commit id: "    "
+   commit id: "     "
    checkout main
    merge feature2 id:"Merge feature2" tag: "v1.1.0" 
 ```
@@ -75,56 +75,57 @@ In this model hotfixes are treated as features.
 
 ```mermaid
 gitGraph
-    commit id: "ONE"
+    commit id: " "
     branch feature_dev1
     checkout main
     checkout feature_dev1
-    commit id:"A"
+    commit id:"  "
     branch feature_dev2
-    commit id:"1"
+    commit id:"    "
     checkout feature_dev1
-    commit id:"B"
+    commit id:"     "
     checkout feature_dev2
-    commit id:"2"
+    commit id:"      "
     checkout feature_dev1
     merge feature_dev2 id: "Merge from dev2"
     checkout main
     merge feature_dev1 id:"Merge part 1"
     branch feature_dev3
-    commit id: "a"
-    commit id: "b"
+    commit id: "       "
+    commit id: "        "
     checkout main
     merge feature_dev3 id: "Merge part 2"
 ```
 
-## Maintaining several `main` branches
+## Maintaining several releases
 A common case is maintaining multiple major releases.
-* Create a main branch per release. You could check out from a tag, like `git checkout v1.0 && git checkout -b release-v1`
+* Create one main branch per release.
 * Keep separated feature branches for each release, even if the feature and change are the same. `git cherry-pick` can be your friend here.
 * Publish one PR per release.
+* Maintain your releases as if they were different softwares (they are!)
 
 ```mermaid
 gitGraph
-    commit id: "ONE" tag: "v1.0"
-    checkout main
+    commit id: " "
     branch release-v1
-    commit id: "one" tag: "1.1"
-    branch feature-for-v1
-    checkout main
-    commit id: "TWO" tag: "v2.0"
-    checkout main    
-    branch feature
+    commit id: "  " tag: "v1.0"
+    branch feature1
+    branch release-v2
+    commit id: "   "
+    commit id: "    " tag: "v2.0"
+    branch feature1-v2
+    checkout feature1
     commit id: "A"
-    checkout feature-for-v1
+    checkout feature1-v2
     commit id: "A cherry-pick"
-    checkout feature
+    checkout feature1
     commit id: "B"
-    checkout feature-for-v1
+    checkout feature1-v2
     commit id: "B cherry-pick"
     checkout release-v1
-    merge feature-for-v1 tag: "v1.1"
-    checkout main
-    merge feature tag: "v2.1"
+    merge feature1 id: "merge feature1" tag: "v1.1"
+    checkout release-v2
+    merge feature1-v2 id: "merge feature1-v2" tag: "v2.1"
 ```
 
 ## Naming
@@ -155,9 +156,7 @@ gitGraph
         merge feature2 id:"Merge feature2"
     ```
 
-    This can be difficult to read when more than 2 branches overlap.
-
-    * Consider rebasing `feature2` onto main, like `git checkout feature2 && git rebase main` :white_check_mark:
+    * Consider rebasing `feature2` onto main, like `git checkout feature2 && git rebase main` :white_check_mark:, you'll get a nicer branch like the one in [Merging features](#merging-features)
     * Don't merge `main` back to `feature2`, like `git checkout feature && git merge main` :x:, which will still lead to a bubble merge.
 
 ## Credits
