@@ -1,6 +1,6 @@
 # Simplest Git Branching Model
 
-This is a practical, lightweight, single-branch model that makes it easy a lot of development situations.
+This is a practical, lightweight, single-branch model that is suitable for many development situations.
 
 It is adapted to teams of several developers, for delivering releases ASAP and maintaining several releases in parallel.
 
