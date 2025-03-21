@@ -1,4 +1,4 @@
-# Simplest git branching model
+# Simplest Git Branching Model
 
 This is a practical, lightweight, single-branch model that makes it easy to handle simple and less simple situations.
 
@@ -16,15 +16,16 @@ It is adapted to teams of several developers, delivering releases ASAP, maintain
 Some more details below.
 
 ## Single branch model
-* A branch `main` stores the latest version and tags.
+* A branch `main` stores the latest version and all the tagged releases.
 * Repository users must take care of checking out the tag or commit that best fits their needs.
 
 ```mermaid
 gitGraph
-   commit id: "ONE" tag: "v1.0.0"
-   commit id: "TWO"
-   commit id: "THREE"
-   commit id: "FOUR" tag: "v1.1.0"
+   commit id: "feature 1" tag: "v1.0.0"
+   commit id: "feature 2"
+   commit id: "hotfix 1" tag: "v1.0.1"
+   commit id: "feature 3" tag: "v1.1.0"
+   commit id: "feature 4"
 ```
 
 ## Adding features
@@ -34,21 +35,20 @@ gitGraph
 * Only you (the developer) should use it.
 
 ### Publishing the feature
-* Implement your feature in `feature`.
+* Implement your feature in branch `feature`.
+* Naming the branch is up to your dev rules.
 * Rebase your branch onto `main`, like `git checkout feature && git rebase main`
-* You are responsible for the conflict management.
+* You (the developer) are responsible for the conflict management.
 * Publish a Pull Request, or equivalent, from `feature` to `main` manually or using a [GitHub](https://github.com/) Pull Request or a [GitLab](https://gitlab.com/) Merge Request.
 
 ## Merging features
 * You (the software manager) should merge the feature branch to `main`.
-* :x: This merge should not be done with option `--fast-forward`, which would kill the functional main branch spirit of this model.
-* Delete the feature branch. Modifying sources within the same ticket should be done in a **new branch**.
+* :x: This merge should not be done with option `--fast-forward`.
+* Naming the merge commit is up to your dev rules. 
+* Delete the feature branch. Modifying sources within the same ticket must be done in a **new branch**.
 * Put a new tag on `main` if needed.
 * :white_check_mark: Branches should look like:
 ```mermaid
----
-title: Merge
----
 gitGraph
    commit id: " " tag: "v1.0.0"
    branch feature1
@@ -74,9 +74,6 @@ In this model hotfixes are treated as features.
 
 
 ```mermaid
----
-title: Complex feature
----
 gitGraph
     commit id: "ONE"
     branch feature_dev1
@@ -133,6 +130,10 @@ gitGraph
     merge feature tag: "v2.1"
 ```
 
+## Naming
+* Naming dev branches, merge commits, tags is up to your dev rules.
+* could include some issue ID from your Project Management Software.
+
 ## DONTs
 
 * :x: Avoid bubble merges
@@ -166,10 +167,10 @@ gitGraph
     * Don't merge `main` back to `feature2`, like `git checkout feature && git merge main` :x:, which will still lead to a bubble merge.
 
 ## Credits
+* [Trunk-Based development workflow](https://trunkbaseddevelopment.com)
 * [What is Git Flow](https://www.gitkraken.com/learn/git/git-flow)
 * Popular Vincent Drissen's [A successful Git branching model](https://nvie.com/posts/a-successful-git-branching-model/), which I used for years (thank you Vincent)
 * [GitLab Flow](https://about.gitlab.com/topics/version-control/what-is-gitlab-flow/)
-* [Trunk-Based development workflow](https://trunkbaseddevelopment.com)
 * [GitHub Flow](https://docs.github.com/en/get-started/using-github/github-flow)
-* Thanks to [jbenet](https://github.com/jbenet) for [this gist about a simple git branching model](https://gist.github.com/jbenet/ee6c9ac48068889b0912).
+* Thanks to [jbenet](https://github.com/jbenet) for [this gist about a simple git branching model](https://gist.github.com/jbenet/ee6c9ac48068889b0912)
 * Diagrams are done with [mermaid](https://mermaid.js.org/)
