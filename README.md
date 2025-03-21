@@ -1,8 +1,8 @@
 # Simplest Git Branching Model
 
-This is a practical, lightweight, single-branch model that makes it easy to handle simple and less simple situations.
+This is a practical, lightweight, single-branch model that makes it easy a lot of development situations.
 
-It is adapted to teams of several developers, delivering releases ASAP, maintaining several releases in parallel.
+It is adapted to teams of several developers, for delivering releases ASAP and maintaining several releases in parallel.
 
 **TLDR**
 ```
@@ -31,21 +31,19 @@ gitGraph
 ## Adding features
 
 ### Adding a feature branch
-* Add a `feature` branch checked out from `main`, like `git checkout main && git checkout -b feature`
+* Create a `feature` branch from the last commit of `main`, like `git checkout main && git checkout -b feature`
 * Only you (the developer) should use it.
 
 ### Publishing the feature
-* Implement your feature in branch `feature`.
-* Naming the branch is up to your dev rules.
+* Implement your feature in the `feature` branch.
 * Rebase your branch onto `main`, like `git checkout feature && git rebase main`
 * You (the developer) are responsible for the conflict management.
-* Publish a Pull Request, or equivalent, from `feature` to `main` manually or using a [GitHub](https://github.com/) Pull Request or a [GitLab](https://gitlab.com/) Merge Request.
+* Publish a Pull Request from `feature` onto `main` using a [GitHub](https://github.com/) Pull Request or a [GitLab](https://gitlab.com/) Merge Request.
 
 ## Merging features
 * You (the software manager) should merge the feature branch to `main`.
 * :x: This merge should not be done with option `--fast-forward`.
-* Naming the merge commit is up to your dev rules. 
-* Delete the feature branch. Modifying sources within the same ticket must be done in a **new branch**.
+* Delete the feature branch. If something was missing or should be updated, a **new branch** must be created.
 * Put a new tag on `main` if needed.
 * :white_check_mark: Branches should look like:
 ```mermaid
@@ -63,8 +61,12 @@ gitGraph
    merge feature2 id:"Merge feature2" tag: "v1.1.0" 
 ```
 
-## Merging hotfixes
-In this model hotfixes are treated as features.
+## Issues and hotfixes
+In this model, issues and hotfixes are treated the same way than features.
+
+## Naming
+* Naming dev branches, merges, commits, tags is up to your dev rules.
+* Names could include some issue ID from your Project Management Software.
 
 ## Complex feature treated by more than one developer
 * Still one branch per developer.
@@ -127,10 +129,6 @@ gitGraph
     checkout release-v2
     merge feature1-v2 id: "merge feature1-v2" tag: "v2.1"
 ```
-
-## Naming
-* Naming dev branches, merge commits, tags is up to your dev rules.
-* could include some issue ID from your Project Management Software.
 
 ## DONTs
 
